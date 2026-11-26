@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+import vm from 'node:vm';
+const source=readFileSync(new URL('../lib/radar.ts',import.meta.url),'utf8');
+const compiled=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+const exports={};vm.runInNewContext(compiled,{exports});
+const {radarAgents,radarGroups,radarTopics,chooseRadar,validateSurvey,summarize}=exports;
+test('60 unique roles in 10 groups',()=>{assert.equal(radarAgents.length,60);assert.equal(new Set(radarAgents.map(a=>a.id)).size,60);assert.equal(radarGroups.length,10);for(const [group] of radarGroups)assert.equal(radarAgents.filter(a=>a.group===group).length,6)});
+test('routing selects existing agents',()=>{for(const topic of radarTopics)assert.ok(radarAgents.some(a=>a.id===chooseRadar(topic)))});
+const survey={question:'Pregunta',population:'Adultos',place:'RD',period:'2026',source:'Prueba sintética',method:'voluntaria',options:[{label:'A',count:30},{label:'B',count:70}]};
+test('counts and proportions',()=>{assert.equal(validateSurvey(survey),true);assert.equal(summarize(survey).n,100);assert.equal(summarize(survey).results[0].pct,30)});
+test('invalid survey rejected',()=>{assert.equal(validateSurvey({...survey,options:[{label:'A',count:-1},{label:'B',count:3}]}),false);assert.equal(validateSurvey({...survey,options:[{label:'A',count:1},{label:'a',count:3}]}),false);assert.equal(validateSurvey({...survey,source:''}),false)});
