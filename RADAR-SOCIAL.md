@@ -1,6 +1,6 @@
 # Radar Social
 
-Módulo independiente no oficial de Liderazgo Responsable OS. 60 roles de IA en 10 unidades; no son 60 modelos ni procesos permanentes. El modo local genera un plan sin IA y calcula distribuciones sobre conteos aportados por el operador. No recoge respuestas, rastrea redes, consulta fuentes automáticamente ni realiza encuestas nacionales. Los datos se guardan en localStorage; el módulo ofrece exportación JSON. No usar datos personales. Los informes asistidos por IA no equivalen a evidencia empírica ni verificación externa.
+Módulo independiente no oficial de Liderazgo Responsable OS. 60 roles de IA en 10 unidades; no son 60 modelos ni procesos permanentes. El modo local genera un plan sin IA y calcula distribuciones sobre conteos aportados por el operador. No recoge respuestas, rastrea redes, consulta fuentes automáticamente ni realiza encuestas nacionales. Los datos se guardan en localStorage; el módulo ofrece exportación PDF. No usar datos personales. Los informes asistidos por IA no equivalen a evidencia empírica ni verificación externa.
 
 ## IA opcional (solo operador autorizado)
 

@@ -38,7 +38,7 @@ Si no configuras una clave, ChatLR mostrará claramente un modo de demostración
 - Opinión: publicaciones y reacciones locales
 - Academia: catálogo y marcadores de progreso (sin lecciones publicadas)
 - Observatorio: métricas de datos locales
-- Configuración: exportación/importación JSON y reinicio de datos
+- Configuración: exportación de informes PDF, importación de copias JSON anteriores y reinicio de datos
 
 ## Persistencia y limitaciones
 
