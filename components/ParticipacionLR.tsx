@@ -11,31 +11,16 @@ const events=[
 ] as const;
 const rdEventPhotos = {
   "ia-gobierno": {
-    "file": "ia-gobierno-rd.svg",
-    "label": "Ilustración conceptual de un auditorio dominicano",
-    "reference": "Interior del auditorio del Banco Central, Santo Domingo",
-    "author": "Rafael Calventi",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Interior_del_auditorio_del_Banco_Central_de_Rep%C3%BAblica_Dominicana..jpg"
+    "file": "ia-gobierno-agenda-lr.jpg",
+    "label": "Cartel de IA y Gobierno"
   },
   "foro-ia": {
-    "file": "foro-ia-rd.svg",
-    "label": "Ilustración conceptual de un auditorio dominicano",
-    "reference": "Auditorio de la Universidad Autónoma de Santo Domingo",
-    "author": "Joanmrl",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Uasd_auditorio.jpg"
+    "file": "foro-ia-agenda-lr.jpg",
+    "label": "Cartel de Foro Nacional de Inteligencia Artificial"
   },
   "lanzamiento": {
-    "file": "lanzamiento-rd.svg",
-    "label": "Ilustración conceptual de un auditorio dominicano",
-    "reference": "Exterior del auditorio del Banco Central, Santo Domingo",
-    "author": "Ricardo Briones",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Auditorio_del_Banco_Central.jpg"
+    "file": "lanzamiento-agenda-lr.jpg",
+    "label": "Cartel de Lanzamiento de Liderazgo Responsable"
   }
 } as const;
 const areas=['Organización de actividades','Logística','Investigación y documentación','Apoyo tecnológico','Accesibilidad','Moderación y relatoría'];
@@ -62,7 +47,7 @@ export default function ParticipacionLR(){
  <div className={s.tabs} role="navigation" aria-label="Participación LR">{tabs.map(t=><button key={t} aria-current={tab===t?'page':undefined} className={tab===t?s.active:''} onClick={()=>{setTab(t);setKind('');setNotice('')}}>{t}</button>)}</div>
  {notice&&<p role="status" className={s.notice}>{notice}</p>}
  {tab==='Inicio'&&<><div className={s.sectionHead}><div><span className={s.kicker}>CUATRO ESPACIOS, UN PROPÓSITO</span><h3>Encuentra tu espacio</h3></div></div><div className={s.grid}>{spaces.map(({title,icon:Icon,label,desc})=><article className={s.card} key={title}><div className={s.icon}><Icon size={25}/></div><span className={s.kicker}>{label}</span><h4>{title==='MLR'?'MLR · Mesa de Liderazgo Responsable':title}</h4><p>{desc}</p><button className={s.link} onClick={()=>setTab(title)}>Explorar <ArrowUpRight size={16}/></button></article>)}</div></>}
- {(tab==='Inicio'||tab==='Conferencias LR'||tab==='MLR')&&<><div className={s.sectionHead}><div><span className={s.kicker}>ENCUENTROS PROPUESTOS</span><h3>{tab==='MLR'?'MLR · Mesa de Liderazgo Responsable':'Agenda destacada'}</h3><p>{tab==='MLR'?'Donde las ideas dialogan para construir futuro.':'Tres encuentros iniciales para compartir conocimiento.'}</p></div><button className={s.outline} onClick={exportAgenda}><Download size={16}/> Agenda PDF</button></div><div className={s.events}>{events.map((ev,i)=><article key={ev.id} className={s.event}><figure className={s.rdPhoto}><div className={s.rdPhotoFrame}><img src={'/mlr/rd/'+rdEventPhotos[ev.id].file} alt={rdEventPhotos[ev.id].label} loading="lazy" decoding="async" /></div><figcaption><span className={s.rdLocal}>REPÚBLICA DOMINICANA · ILUSTRACIÓN CONCEPTUAL</span><span>Diseño ilustrativo; sede no confirmada.</span><span>Referencia fotográfica externa: <a href={rdEventPhotos[ev.id].source} target="_blank" rel="noreferrer">{rdEventPhotos[ev.id].reference}</a> · {rdEventPhotos[ev.id].author} · <a href={rdEventPhotos[ev.id].licenseUrl} target="_blank" rel="noreferrer">{rdEventPhotos[ev.id].license}</a>.</span></figcaption></figure><div className={s.eventTop}><span className={s.num}>0{i+1}</span><span className={s.tag}>{ev.kind}</span></div><h4>{ev.title}</h4><strong>{ev.subtitle}</strong><p>{ev.description}</p><div className={s.meta}><span><CalendarDays size={15}/> Fecha por confirmar</span><span><Clock size={15}/> {ev.duration}</span><span><MapPin size={15}/> {ev.format}</span></div><div className={s.chips}>{ev.topics.map(t=><span key={t}>{t}</span>)}</div><details><summary>Ver programa propuesto</summary><ol>{ev.agenda.map(a=><li key={a}>{a}</li>)}</ol></details><button className={s.gold} onClick={()=>openForm(ev.title)}>Guardar mi interés <ArrowUpRight size={16}/></button></article>)}</div></>}
+ {(tab==='Inicio'||tab==='Conferencias LR'||tab==='MLR')&&<><div className={s.sectionHead}><div><span className={s.kicker}>ENCUENTROS PROPUESTOS</span><h3>{tab==='MLR'?'MLR · Mesa de Liderazgo Responsable':'Agenda destacada'}</h3><p>{tab==='MLR'?'Donde las ideas dialogan para construir futuro.':'Tres encuentros iniciales para compartir conocimiento.'}</p></div><button className={s.outline} onClick={exportAgenda}><Download size={16}/> Agenda PDF</button></div><div className={s.events}>{events.map((ev,i)=><article key={ev.id} className={s.event}><figure className={s.rdPhoto}><div className={s.rdPhotoFrame}><img src={'/mlr/rd/'+rdEventPhotos[ev.id].file} alt={rdEventPhotos[ev.id].label} loading="lazy" decoding="async" /></div><figcaption><span className={s.rdLocal}>REPÚBLICA DOMINICANA · CARTEL DE LA AGENDA</span><span>Imagen generada con IA; fecha y sede por confirmar.</span></figcaption></figure><div className={s.eventTop}><span className={s.num}>0{i+1}</span><span className={s.tag}>{ev.kind}</span></div><h4>{ev.title}</h4><strong>{ev.subtitle}</strong><p>{ev.description}</p><div className={s.meta}><span><CalendarDays size={15}/> Fecha por confirmar</span><span><Clock size={15}/> {ev.duration}</span><span><MapPin size={15}/> {ev.format}</span></div><div className={s.chips}>{ev.topics.map(t=><span key={t}>{t}</span>)}</div><details><summary>Ver programa propuesto</summary><ol>{ev.agenda.map(a=><li key={a}>{a}</li>)}</ol></details><button className={s.gold} onClick={()=>openForm(ev.title)}>Guardar mi interés <ArrowUpRight size={16}/></button></article>)}</div></>}
  {tab==='Voluntariado LR'&&<article className={s.panel}><span className={s.kicker}>SERVIR CON CONOCIMIENTO</span><h3>Voluntariado LR</h3><p>Participación voluntaria, sin compromiso de afiliación. Selecciona un área en la que te gustaría colaborar.</p><div className={s.grid}>{areas.map(a=><div className={s.mini} key={a}><CheckCircle2 size={18}/>{a}</div>)}</div><button className={s.gold} onClick={()=>openForm('Voluntariado LR')}>Crear perfil local <Plus size={16}/></button></article>}
  {tab==='Multiplicadores'&&<article className={s.panel}><span className={s.kicker}>RED DE APRENDIZAJE</span><h3>Multiplicadores LR</h3><p>Formación para facilitar conversaciones abiertas, compartir materiales educativos y organizar encuentros comunitarios con respeto a diferentes opiniones.</p><div className={s.grid}>{['Introducción al liderazgo y ética','Facilitación y escucha activa','Alfabetización digital y verificación','Organización de encuentros y accesibilidad'].map((a,i)=><div className={s.mini} key={a}><span className={s.num}>0{i+1}</span>{a}</div>)}</div><p className={s.muted}>Ruta formativa propuesta. No se otorgan acreditaciones oficiales ni rangos automáticos.</p><button className={s.gold} onClick={()=>openForm('Multiplicadores LR')}>Guardar interés formativo <ArrowUpRight size={16}/></button></article>}
  {tab==='MLR'&&<article className={s.panel}><span className={s.kicker}>LABORATORIO DE DIÁLOGO</span><h3>Prepara tu aporte a la mesa</h3><p>Contrasta evidencia, beneficios, riesgos y alternativas. Tus aportes son borradores privados, no publicaciones comunitarias.</p><form className={s.form} onSubmit={addNote}><label>Tema<select value={topic} onChange={e=>setTopic(e.target.value)}>{events.map(ev=><option key={ev.id}>{ev.title}</option>)}</select></label><label>Pregunta o argumento<textarea required maxLength={1500} rows={5} value={body} onChange={e=>setBody(e.target.value)} placeholder="¿Qué evidencia respalda tu propuesta? ¿Qué alternativas considerarías?"/></label><button className={s.gold} disabled={!ready||!body.trim()}>Guardar aporte <Plus size={16}/></button></form><div className={s.sectionHead}><h4>Mis aportes ({notes.length})</h4><button className={s.outline} disabled={!notes.length} onClick={exportNotes}><Download size={16}/> PDF</button></div>{notes.map(n=><div className={s.mini} key={n.id}><BookOpen size={18}/><div><strong>{n.topic}</strong><p>{n.body}</p></div></div>)}</article>}
